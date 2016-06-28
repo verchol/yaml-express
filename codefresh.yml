@@ -1,0 +1,38 @@
+version: '1.0'
+
+steps:
+
+  clone-prj:
+    type: git-clone
+    repo: https://github.com/verchol/yaml-express.git
+
+  build-npm:
+    image: node:latest
+    commands:
+      - npm install
+    environment:
+      - JIM=BOB
+      - PORT=9000
+
+  # Not implemented yet
+  #integration-tests:
+  #  type: composition
+  #  image: alpine
+  #  working-directory: ${{clone-jim}}
+  #  composition-file: integ-test-composition.yml
+  #  commands:
+  #    - tests/exec.sh
+
+  #build-djanga:
+  #  type: build
+  #  description: It builds the Djanga Service
+  #  dockerfile: Dockerfile
+  #  image-name: noamt/djanga
+  #  tag: nicetag
+    #build-arguments:
+    #  - FOO=BAR
+
+  #push-dockerhub:
+  #  type: push
+  #  candidate: ${{build-djanga}}
+  #  tag: awesomeness
